@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skin Care | Cart</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+<section id="header">
+  <a href="#"><img src="./img/logo.png" class="logo" alt="Logo"></a>
+  <div>
+    <ul id="navbar">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="product.html">Products</a></li>
+      <li><a href="order.html">Order</a></li>
+      <li><a class="active" href="cart.html"><i class="fas fa-shopping-cart"></i> (<span id="cart-count">0</span>)</a></li>
+      <li><a href="auth.html"><i class="fas fa-user"></i></a></li>
+    </ul>
+  </div>
+</section>
+
+<section id="cart" class="section-p1">
+  <h2>Your Cart</h2>
+  <p>Review your selected products and proceed to checkout.</p>
+  <div id="cart-table"></div>
+  <button class="checkout-btn" onclick="checkoutCart()">Checkout</button>
+</section>
+
+<footer>
+  <hr>
+  <p>&copy; 2025 Skin Care. All rights reserved by Nan Sophalla.</p>
+</footer>
+<script src="script.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", renderCart);
+
+function renderCart() {
+  const cart = JSON.parse(localStorage.getItem("cart")) || [];
+  const tableDiv = document.getElementById("cart-table");
+  if (cart.length === 0) {
+    tableDiv.innerHTML = "<p>Your cart is empty.</p>";
+    return;
+  }
+  let total = 0;
+  let rows = cart.map((item, i) => {
+    const sub = item.price * item.quantity;
+    total += sub;
+    return `
+      <tr>
+        <td><a href="#" onclick="removeFromCart(${i});return false;"><i class="fas fa-trash"></i></a></td>
+        <td>${item.name}</td>
+        <td>$${item.price.toFixed(2)}</td>
+        <td><input type="number" value="${item.quantity}" min="1" onchange="updateCartQuantity(${i}, this.value)" /></td>
+        <td>$${sub.toFixed(2)}</td>
+      </tr>
+    `;
+  }).join("");
+  tableDiv.innerHTML = `
+    <table width="100%">
+      <thead>
+        <tr>
+          <td>Remove</td>
+          <td>Product</td>
+          <td>Price</td>
+          <td>Quantity</td>
+          <td>Sub Total</td>
+        </tr>
+      </thead>
+      <tbody>
+        ${rows}
+        <tr>
+          <td colspan="3"></td>
+          <td><strong>Total</strong></td>
+          <td><strong>$${total.toFixed(2)}</strong></td>
+        </tr>
+      </tbody>
+    </table>
+  `;
+}
+
+function removeFromCart(idx) {
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  cart.splice(idx, 1);
+  localStorage.setItem("cart", JSON.stringify(cart));
+  renderCart();
+  updateCartCount();
+}
+function updateCartQuantity(idx, value) {
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  cart[idx].quantity = parseInt(value) || 1;
+  localStorage.setItem("cart", JSON.stringify(cart));
+  renderCart();
+  updateCartCount();
+}
+</script>
+</body>
+</html>

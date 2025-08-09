@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skin Care | Products</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+<section id="header">
+    <a href="#"><img src="./img/logo.png" class="logo" alt="Logo"></a>
+    <div>
+        <ul id="navbar">
+            <li><a href="index.html">Home</a></li>
+            <li><a class="active" href="product.html">Products</a></li>
+            <li><a href="order.html">Order</a></li>
+            <li><a href="cart.html"><i class="fas fa-shopping-cart"></i>(<span id="cart-count">0</span>)</a></li>
+            <li><a href="auth.html"><i class="fas fa-user"></i></a></li>
+        </ul>
+    </div>
+</section>
+<section id="product1" class="section-p1">
+    <h2>Skin 1004</h2>
+    <p>EMBRACING SERENITY IN THE UNTOUCHED NATURE</p>
+    <div class="pro-container">
+        <!-- products -->
+        <div class="pro" data-name="Probio Cica Ampoule" data-price="15.00">
+            <img src="img/Ampoule PC.jpg" alt="Probio Cica Ampoule">
+            <div class="des">
+                <span>Skin 1004</span>
+                <h5>Probio Cica Ampoule</h5>
+                <h4>$15.00</h4>
+            </div>
+            <a href="#" class="cart" onclick="addToCart(this); return false;"><i class="fas fa-shopping-cart"></i></a>
+        </div>
+        <div class="pro" data-name="Poremizing Ampoule" data-price="15.00">
+            <img src="img/Ampoule P.jpg" alt="Poremizing Ampoule">
+            <div class="des">
+                <span>Skin 1004</span>
+                <h5>Poremizing Ampoule</h5>
+                <h4>$15.00</h4>
+            </div>
+            <a href="#" class="cart" onclick="addToCart(this); return false;"><i class="fas fa-shopping-cart"></i></a>
+        </div>
+        <div class="pro" data-name="Centella Ampoule" data-price="15.00">
+            <img src="img/Ampoule.png" alt="Centella Ampoule">
+            <div class="des">
+                <span>Skin 1004</span>
+                <h5>Centella Ampoule</h5>
+                <h4>$15.00</h4>
+            </div>
+            <a href="#" class="cart" onclick="addToCart(this); return false;"><i class="fas fa-shopping-cart"></i></a>
+        </div>
+        <div class="pro" data-name="Probio Cica Toner" data-price="12.50">
+            <img src="img/Toner PC.jpg" alt="Probio Cica Toner">
+            <div class="des">
+                <span>Skin 1004</span>
+                <h5>Probio Cica Toner</h5>
+                <h4>$12.50</h4>
+            </div>
+            <a href="#" class="cart" onclick="addToCart(this); return false;"><i class="fas fa-shopping-cart"></i></a>
+        </div>
+        <div class="pro" data-name="Poremizing Toner" data-price="12.50">
+            <img src="img/Toner P.jpg" alt="Poremizing Toner">
+            <div class="des">
+                <span>Skin 1004</span>
+                <h5>Poremizing Toner</h5>
+                <h4>$12.50</h4>
+            </div>
+            <a href="#" class="cart" onclick="addToCart(this); return false;"><i class="fas fa-shopping-cart"></i></a>
+        </div>
+        <div class="pro" data-name="Centella Toner" data-price="12.50">
+            <img src="img/Toner.jpg" alt="Centella Toner">
+            <div class="des">
+                <span>Skin 1004</span>
+                <h5>Centella Toner</h5>
+                <h4>$12.50</h4>
+            </div>
+            <a href="#" class="cart" onclick="addToCart(this); return false;"><i class="fas fa-shopping-cart"></i></a>
+        </div>
+        <div class="pro" data-name="Probio Cica Cream" data-price="25.00">
+            <img src="img/Cream PC.jpg" alt="Probio Cica Cream">
+            <div class="des">
+                <span>Skin 1004</span>
+                <h5>Probio Cica Cream</h5>
+                <h4>$25.00</h4>
+            </div>
+            <a href="#" class="cart" onclick="addToCart(this); return false;"><i class="fas fa-shopping-cart"></i></a>
+        </div>
+        <div class="pro" data-name="Poremizing Cream" data-price="25.00">
+            <img src="img/Cream P.jpg" alt="Poremizing Cream">
+            <div class="des">
+                <span>Skin 1004</span>
+                <h5>Poremizing Cream</h5>
+                <h4>$25.00</h4>
+            </div>
+            <a href="#" class="cart" onclick="addToCart(this); return false;"><i class="fas fa-shopping-cart"></i></a>
+        </div>
+        <div class="pro" data-name="Centella Cream" data-price="25.00">
+            <img src="img/Cream.jpg" alt="Centella Cream">
+            <div class="des">
+                <span>Skin 1004</span>
+                <h5>Centella Cream</h5>
+                <h4>$25.00</h4>
+            </div>
+            <a href="#" class="cart" onclick="addToCart(this); return false;"><i class="fas fa-shopping-cart"></i></a>
+        </div>
+    </div>
+</section>
+<footer>
+    <hr>
+    <p>&copy; 2025 Skin Care. All rights reserved by Nan Sophalla.</p>
+</footer>
+<script src="script.js"></script>
+</body>
+</html>

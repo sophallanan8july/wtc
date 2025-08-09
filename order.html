@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order History</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+  <section id="header">
+    <a href="#"><img src="./img/logo.png" class="logo" alt="Logo"></a>
+    <div>
+      <ul id="navbar">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="product.html">Products</a></li>
+        <li><a class="active" href="order.html">Order</a></li>
+        <li><a href="cart.html"><i class="fas fa-shopping-cart"></i>(<span id="cart-count">0</span>)</a></li>
+        <li><a href="auth.html"><i class="fas fa-user"></i></a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section-p1">
+    <h2>Order History</h2>
+    <p>Here are your past orders, <span id="username"></span>:</p>
+    <div id="order-history"></div>
+    <a href="auth.html">Back to Account</a>
+  </section>
+
+  <footer>
+    <hr>
+    <p>&copy; 2025 Skin Care. All rights reserved by Nan Sophalla.</p>
+  </footer>
+
+  <script>
+    const user = JSON.parse(localStorage.getItem("loggedInUser"));
+    if (!user) {
+      window.location.href = "auth.html";
+    } else {
+      document.getElementById("username").innerText = user.name;
+    }
+
+    function renderOrderHistory() {
+      const historyDiv = document.getElementById("order-history");
+      const orders = JSON.parse(localStorage.getItem("orders")) || [];
+      const userOrders = orders.filter(order => order.userId === user.id);
+
+      if (userOrders.length === 0) {
+        historyDiv.innerHTML = "<p>You have no previous orders.</p>";
+        return;
+      }
+
+      userOrders.forEach((order, index) => {
+        const container = document.createElement("div");
+        container.className = "order-block";
+        container.style.marginBottom = "30px";
+        container.innerHTML = `
+          <h3>Order #${index + 1} <span style="font-size: 14px; color: gray">(${order.date})</span></h3>
+          <table width="100%">
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Subtotal</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${order.items.map(item => `
+                <tr>
+                  <td>${item.name}</td>
+                  <td>$${item.price.toFixed(2)}</td>
+                  <td>${item.quantity}</td>
+                  <td>$${(item.price * item.quantity).toFixed(2)}</td>
+                </tr>
+              `).join("")}
+              <tr>
+                <td colspan="3"><strong>Total</strong></td>
+                <td><strong>$${order.total.toFixed(2)}</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        `;
+        historyDiv.appendChild(container);
+      });
+    }
+    document.addEventListener("DOMContentLoaded", renderOrderHistory);
+  </script>
+  <script src="script.js"></script>
+</body>
+</html>
